@@ -1,3 +1,3 @@
-import {galleryPhotos} from './data.js';
+import {renderPictures} from './miniatures.js';
 
-galleryPhotos();
+renderPictures();

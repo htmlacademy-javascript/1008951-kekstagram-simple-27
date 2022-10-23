@@ -11,6 +11,6 @@ const getPhotoDescription = (index) => ({
   comments: getIntegerRandom(0, 200)
 });
 
-const galleryPhotos = Array.from({length: GALLERY_LENGTH}, (_, index) => getPhotoDescription(index));
+const pictures = Array.from({length: GALLERY_LENGTH}, (_, index) => getPhotoDescription(index));
 
-export {galleryPhotos};
+export {pictures};
