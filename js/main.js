@@ -1,1 +1,3 @@
-import './miniatures.js';
+import {renderPictures} from './miniatures.js';
+
+renderPictures();
