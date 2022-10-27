@@ -3,7 +3,7 @@ import {pictures} from './data.js';
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const renderPictures = () => {
+const renderMiniatures = () => {
   const picturesListFragment = document.createDocumentFragment();
 
   pictures.forEach(({url, likes, comments}) => {
@@ -20,4 +20,4 @@ const renderPictures = () => {
 
 };
 
-export {renderPictures};
+export {renderMiniatures};
