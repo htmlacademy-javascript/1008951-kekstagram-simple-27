@@ -1,5 +1,5 @@
 // Функция, возвращающая случайное целое число из переданного диапазона включительно
-function getIntegerRandom(a, b) {
+const getIntegerRandom = (a, b) => {
   if (a < 0 || b < 0) {
     return NaN;
   }
@@ -10,7 +10,7 @@ function getIntegerRandom(a, b) {
   const result = Math.random() * (upper - lower + 1) + lower;
 
   return Math.floor(result);
-}
+};
 
 getIntegerRandom();
 
@@ -18,4 +18,6 @@ getIntegerRandom();
 const checkLengthComment = (string, maxLength) => string.length <= maxLength;
 checkLengthComment('hello', 10);
 
-export {getIntegerRandom, checkLengthComment};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getIntegerRandom, checkLengthComment, isEscapeKey};

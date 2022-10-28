@@ -1,3 +1,4 @@
-import {renderPictures} from './miniatures.js';
+import {renderMiniatures} from './miniatures.js';
+import './overlay.js';
 
-renderPictures();
+renderMiniatures();
