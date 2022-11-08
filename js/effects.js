@@ -96,13 +96,11 @@ noUiSlider.create(effectLevelSlider, DEFAULT_SLIDER_OPTIONS);
 
 const hideUiSlider = () => {
   effectLevelSlider.classList.add('hidden');
-  effectLevelSlider.setAttribute('disabled', true);
   effectLevelInput.value = '';
 };
 
 const showUiSlider = () => {
   effectLevelSlider.noUiSlider.updateOptions(currentEffect.sliderSettings);
-  effectLevelSlider.removeAttribute('disabled');
   effectLevelSlider.classList.remove('hidden');
   effectLevelSlider.noUiSlider.on('update', () => {
     previewImage.style.filter = `${currentEffect.filter}(${effectLevelSlider.noUiSlider.get()}${currentEffect.units})`;

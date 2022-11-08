@@ -5,7 +5,10 @@ const scaleControlInput = scaleElement.querySelector('.scale__control--value');
 const previewImage = document.querySelector('.img-upload__preview img');
 
 const ImageSettings = {
-  DEFAULT_SIZE: 100, MIN_SIZE: 25, MAX_SIZE: 100, STEP_SIZE: 25
+  DEFAULT_SIZE: 100,
+  MIN_SIZE: 25,
+  MAX_SIZE: 100,
+  STEP_SIZE: 25
 };
 
 const setDefaultSize = () => {
