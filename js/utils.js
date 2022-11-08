@@ -12,12 +12,16 @@ const getIntegerRandom = (a, b) => {
   return Math.floor(result);
 };
 
-getIntegerRandom();
-
 // Функция для проверки максимальной длины строки
 const checkLengthComment = (string, maxLength) => string.length <= maxLength;
 checkLengthComment('hello', 10);
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getIntegerRandom, checkLengthComment, isEscapeKey};
+// Убирает стили у элемента
+const resetStyleElement = (element) => {
+  element.removeAttribute('style');
+  element.removeAttribute('class');
+};
+
+export {getIntegerRandom, checkLengthComment, isEscapeKey, resetStyleElement};
