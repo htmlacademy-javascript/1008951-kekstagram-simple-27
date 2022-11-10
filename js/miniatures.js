@@ -1,12 +1,10 @@
-import {pictures} from './data.js';
-
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const renderMiniatures = () => {
+const renderMiniatures = (miniatures) => {
   const picturesListFragment = document.createDocumentFragment();
 
-  pictures.forEach(({url, likes, comments}) => {
+  miniatures.forEach(({url, likes, comments}) => {
     const picture = pictureTemplate.cloneNode(true);
 
     picture.querySelector('.picture__img').src = url;
