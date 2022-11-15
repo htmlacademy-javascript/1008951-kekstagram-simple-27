@@ -42,4 +42,4 @@ setDefaultSize();
 scaleControlSmallerButton.addEventListener('click', zoomOut);
 scaleControlBiggerButton.addEventListener('click', zoomIn);
 
-export {previewImage};
+export {previewImage, setDefaultSize};
