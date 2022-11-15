@@ -1,6 +1,5 @@
 import {renderMiniatures} from './miniatures.js';
 import {showError} from './error-message.js';
-import {showSuccess} from './success-message.js';
 
 const getData = () => {
   fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
