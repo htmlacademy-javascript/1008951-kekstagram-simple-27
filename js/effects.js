@@ -126,5 +126,13 @@ const addEffect = (evt) => {
   }
 };
 
+const setDefaultEffect = () => {
+  effectLevelSlider.classList.add('hidden');
+  previewImage.style.filter = '';
+  previewImage.classList = '';
+};
+
 hideUiSlider();
 effectsListElement.addEventListener('click', addEffect);
+
+export {setDefaultEffect};
