@@ -24,7 +24,7 @@ const DEFAULT_SLIDER_OPTIONS = {
   }
 };
 
-const effects = {
+const Effects = {
   chrome: {
     filter: 'grayscale',
     units: '',
@@ -119,7 +119,7 @@ const setUiSliderSettings = (evt) => {
 
 const addEffect = (evt) => {
   if (evt.target && evt.target.closest('input[type="radio"]')) {
-    currentEffect = effects[evt.target.value];
+    currentEffect = Effects[evt.target.value];
     previewImage.removeAttribute('class');
     previewImage.classList.add(`effects__preview--${evt.target.value}`);
     setUiSliderSettings(evt);
