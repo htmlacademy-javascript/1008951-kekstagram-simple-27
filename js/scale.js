@@ -13,7 +13,6 @@ const ImageSettings = {
 
 const setDefaultSize = () => {
   scaleControlInput.value = `${ImageSettings.DEFAULT_SIZE}%`;
-  console.log(scaleControlInput.value);
   previewImage.style.transform = `scale(${scaleControlInput.value})`;
 };
 
