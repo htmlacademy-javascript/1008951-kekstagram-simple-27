@@ -32,7 +32,7 @@ const setUserFormSubmit = (onSuccess) => {
         showSuccess('Изображение успешно загружено', 'Круто');
         unblockSubmitButton();
       }, () => {
-        showError('Не удалось опубликовать фото. Попробуйте ещё раз', 'Закрыть');
+        showError('Ошибка загрузки файла', 'Попробовать еще раз');
         unblockSubmitButton();
       }, new FormData(evt.target));
     }

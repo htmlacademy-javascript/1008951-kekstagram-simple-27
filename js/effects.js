@@ -1,7 +1,4 @@
 import {previewImage} from './scale.js';
-import {resetStyleElement} from './utils.js';
-
-let currentEffect;
 
 const DEFAULT_SLIDER_OPTIONS = {
   range: {
@@ -24,7 +21,9 @@ const DEFAULT_SLIDER_OPTIONS = {
   }
 };
 
-const Effects = {
+let currentEffect;
+
+const effects = {
   chrome: {
     filter: 'grayscale',
     units: '',
@@ -95,11 +94,13 @@ const effectLevelInput = effectLevelElement.querySelector('.effect-level__value'
 noUiSlider.create(effectLevelSlider, DEFAULT_SLIDER_OPTIONS);
 
 const hideUiSlider = () => {
+  effectLevelElement.style.display = 'none';
   effectLevelSlider.classList.add('hidden');
   effectLevelInput.value = '';
 };
 
 const showUiSlider = () => {
+  effectLevelElement.style.display = 'block';
   effectLevelSlider.noUiSlider.updateOptions(currentEffect.sliderSettings);
   effectLevelSlider.classList.remove('hidden');
   effectLevelSlider.noUiSlider.on('update', () => {
@@ -111,7 +112,8 @@ const showUiSlider = () => {
 const setUiSliderSettings = (evt) => {
   if (evt.target.value === 'none') {
     hideUiSlider();
-    resetStyleElement(previewImage);
+    previewImage.removeAttribute('style');
+    previewImage.removeAttribute('class');
   } else {
     showUiSlider();
   }
@@ -119,7 +121,7 @@ const setUiSliderSettings = (evt) => {
 
 const addEffect = (evt) => {
   if (evt.target && evt.target.closest('input[type="radio"]')) {
-    currentEffect = Effects[evt.target.value];
+    currentEffect = effects[evt.target.value];
     previewImage.removeAttribute('class');
     previewImage.classList.add(`effects__preview--${evt.target.value}`);
     setUiSliderSettings(evt);
@@ -131,6 +133,7 @@ const setDefaultEffect = () => {
   previewImage.style.filter = '';
   previewImage.classList = '';
 };
+
 
 hideUiSlider();
 effectsListElement.addEventListener('click', addEffect);
