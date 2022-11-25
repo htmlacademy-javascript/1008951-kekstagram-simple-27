@@ -24,6 +24,17 @@ const DEFAULT_SLIDER_OPTIONS = {
 let currentEffect;
 
 const effects = {
+  none: {
+    filter: 'none',
+    units: '',
+    sliderSettings: {
+      range: {
+        min: 0,
+        max: 100,
+      },
+      step: 1,
+    },
+  },
   chrome: {
     filter: 'grayscale',
     units: '',
@@ -91,51 +102,46 @@ const effectLevelElement = document.querySelector('.effect-level');
 const effectLevelSlider = effectLevelElement.querySelector('.effect-level__slider');
 const effectLevelInput = effectLevelElement.querySelector('.effect-level__value');
 
-noUiSlider.create(effectLevelSlider, DEFAULT_SLIDER_OPTIONS);
-
-const hideUiSlider = () => {
-  effectLevelElement.style.display = 'none';
-  effectLevelSlider.classList.add('hidden');
-  effectLevelInput.value = '';
-};
+const slider = noUiSlider.create(effectLevelSlider, DEFAULT_SLIDER_OPTIONS);
 
 const showUiSlider = () => {
-  effectLevelElement.style.display = 'block';
-  effectLevelSlider.noUiSlider.updateOptions(currentEffect.sliderSettings);
-  effectLevelSlider.classList.remove('hidden');
-  effectLevelSlider.noUiSlider.on('update', () => {
-    previewImage.style.filter = `${currentEffect.filter}(${effectLevelSlider.noUiSlider.get()}${currentEffect.units})`;
-    effectLevelInput.value = effectLevelSlider.noUiSlider.get();
-  });
+  slider.updateOptions(currentEffect.sliderSettings);
+  effectLevelElement.classList.remove('hidden');
 };
 
-const setUiSliderSettings = (evt) => {
-  if (evt.target.value === 'none') {
-    hideUiSlider();
-    previewImage.removeAttribute('style');
-    previewImage.removeAttribute('class');
+slider.on('update', () => {
+  const currentValue = slider.get();
+  effectLevelInput.value = currentValue;
+  const currentEffectName = effectsListElement.querySelector('input:checked').value;
+  if (currentEffectName === 'none') {
+    previewImage.style.filter = '';
   } else {
-    showUiSlider();
+    const effect = effects[currentEffectName];
+    previewImage.style.filter = `${effect.filter}(${currentValue}${effect.units})`;
   }
-};
+});
 
 const addEffect = (evt) => {
   if (evt.target && evt.target.closest('input[type="radio"]')) {
+    previewImage.classList = '';
     currentEffect = effects[evt.target.value];
-    previewImage.removeAttribute('class');
-    previewImage.classList.add(`effects__preview--${evt.target.value}`);
-    setUiSliderSettings(evt);
+    showUiSlider();
+    if(evt.target.value === 'none') {
+      previewImage.style.filter = '';
+      previewImage.removeAttribute('class');
+      effectLevelElement.classList.add('hidden');
+    } else {
+      previewImage.classList.add(`effects__preview--${evt.target.value}`);
+    }
   }
 };
 
 const setDefaultEffect = () => {
-  effectLevelSlider.classList.add('hidden');
+  effectLevelElement.classList.add('hidden');
   previewImage.style.filter = '';
   previewImage.classList = '';
 };
 
-
-hideUiSlider();
 effectsListElement.addEventListener('click', addEffect);
 
 export {setDefaultEffect};
